@@ -1,0 +1,6 @@
+export const GAME_CONFIG = {
+    CANVAS_WIDTH: 400,
+    CANVAS_HEIGHT: 400,
+    GRID_ROWS: 8,
+    GRID_COLS: 8
+};

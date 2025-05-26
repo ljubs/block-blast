@@ -1,4 +1,6 @@
 import { Grid } from "../models/grid";
+import { GAME_CONFIG } from "../config/gameConfig";
+
 
 export class GameView {
     private drawingContext: CanvasRenderingContext2D;
@@ -13,12 +15,14 @@ export class GameView {
         if (!drawingContext)
             throw new Error("Can't get 2D context from canvas!");
         this.drawingContext = drawingContext;
-        this.grid = new Grid(8, 8);
+        canvasElement.width = GAME_CONFIG.CANVAS_WIDTH;
+        canvasElement.height = GAME_CONFIG.CANVAS_HEIGHT;
+        this.grid = new Grid(GAME_CONFIG.GRID_ROWS, GAME_CONFIG.GRID_COLS);
     }
 
     drawGrid() {
-        const cellWidth = 400 / this.grid.getCols();
-        const cellHeight = 400 / this.grid.getRows();
+        const cellWidth = GAME_CONFIG.CANVAS_WIDTH / this.grid.getCols();
+        const cellHeight = GAME_CONFIG.CANVAS_HEIGHT / this.grid.getRows();
         this.drawingContext.strokeStyle = 'gray';
         this.drawingContext.lineWidth = 1;
 
@@ -26,7 +30,7 @@ export class GameView {
             const y = row * cellHeight;
             this.drawingContext.beginPath();
             this.drawingContext.moveTo(0, y);
-            this.drawingContext.lineTo(400, y);
+            this.drawingContext.lineTo(GAME_CONFIG.CANVAS_HEIGHT, y);
             this.drawingContext.stroke();
         }
 
@@ -34,7 +38,7 @@ export class GameView {
             const x = col * cellWidth;
             this.drawingContext.beginPath();
             this.drawingContext.moveTo(x, 0);
-            this.drawingContext.lineTo(x, 400);
+            this.drawingContext.lineTo(x, GAME_CONFIG.CANVAS_WIDTH);
             this.drawingContext.stroke();
         }
     }

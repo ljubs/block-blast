@@ -1,6 +1,8 @@
-import { GameView } from "./views/gameView.js";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var gameView_1 = require("./views/gameView");
 function main() {
-    const gameView = new GameView();
+    var gameView = new gameView_1.GameView();
     gameView.drawGrid();
 }
 main();

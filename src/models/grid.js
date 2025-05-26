@@ -1,23 +1,28 @@
-export class Grid {
-    constructor(rows, cols) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Grid = void 0;
+var Grid = /** @class */ (function () {
+    function Grid(rows, cols) {
         this.rows = rows;
         this.cols = cols;
         this.grid = this.initializeGrid(rows, cols);
     }
-    initializeGrid(rows, cols) {
-        const grid = [];
-        for (let row = 0; row < rows; row++) {
+    Grid.prototype.initializeGrid = function (rows, cols) {
+        var grid = [];
+        for (var row = 0; row < rows; row++) {
             grid[row] = [];
-            for (let col = 0; col < cols; col++) {
+            for (var col = 0; col < cols; col++) {
                 grid[row][col] = null;
             }
         }
         return grid;
-    }
-    getRows() {
+    };
+    Grid.prototype.getRows = function () {
         return this.rows;
-    }
-    getCols() {
+    };
+    Grid.prototype.getCols = function () {
         return this.cols;
-    }
-}
+    };
+    return Grid;
+}());
+exports.Grid = Grid;
