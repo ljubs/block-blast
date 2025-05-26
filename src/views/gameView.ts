@@ -1,7 +1,8 @@
-
+import { Grid } from "../models/grid";
 
 export class GameView {
     private drawingContext: CanvasRenderingContext2D;
+    private grid: Grid;
 
     constructor() {
         const canvas = document.getElementById("gameCanvas");
@@ -12,11 +13,30 @@ export class GameView {
         if (!drawingContext)
             throw new Error("Can't get 2D context from canvas!");
         this.drawingContext = drawingContext;
+        this.grid = new Grid(8, 8);
     }
 
-    drawTestRectangle() {
-        this.drawingContext.fillStyle = 'red';
-        this.drawingContext.fillRect(50, 50, 100, 100);
+    drawGrid() {
+        const cellWidth = 400 / this.grid.getCols();
+        const cellHeight = 400 / this.grid.getRows();
+        this.drawingContext.strokeStyle = 'gray';
+        this.drawingContext.lineWidth = 1;
+
+        for (let row = 0; row <= this.grid.getRows(); row++) {
+            const y = row * cellHeight;
+            this.drawingContext.beginPath();
+            this.drawingContext.moveTo(0, y);
+            this.drawingContext.lineTo(400, y);
+            this.drawingContext.stroke();
+        }
+
+        for (let col = 0; col <= this.grid.getCols(); col++) {
+            const x = col * cellWidth;
+            this.drawingContext.beginPath();
+            this.drawingContext.moveTo(x, 0);
+            this.drawingContext.lineTo(x, 400);
+            this.drawingContext.stroke();
+        }
     }
 
 }
