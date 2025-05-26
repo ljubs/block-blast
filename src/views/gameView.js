@@ -1,4 +1,4 @@
-import { Grid } from "../models/grid";
+import { Grid } from "../models/grid.js";
 export class GameView {
     constructor() {
         const canvas = document.getElementById("gameCanvas");
